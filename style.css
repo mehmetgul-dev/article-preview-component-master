@@ -1,0 +1,193 @@
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: hsl(210, 46%, 95%);
+  font-family: 'Manrope', sans-serif; 
+  padding: 20px;
+}
+
+.card {
+  display: grid;
+  grid-template-columns: 285px 1fr;
+  grid-template-rows: auto 1fr auto;
+  width: 730px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 25px 40px -10px rgba(72, 82, 106, 0.25);
+}
+
+/* --- Görsel: 3 satırı da kaplasın --- */
+.image {
+  grid-column: 1;
+  grid-row: 1 / 4;
+}
+
+.image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+h1 {
+  grid-column: 2;
+  grid-row: 1;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: hsl(217, 33%, 25%);
+  line-height: 1.4;
+  padding: 32px 32px 0 32px;
+}
+
+p {
+  grid-column: 2;
+  grid-row: 2;
+  font-size: 0.9rem;
+  color: hsl(214, 17%, 51%);
+  line-height: 1.6;
+  padding: 16px 32px 0 32px;
+}
+
+.user {
+  grid-column: 2;
+  grid-row: 3;
+  display: flex;
+  align-items: center;
+  padding: 24px 32px 32px 32px;
+  position: relative;
+}
+
+.user-image img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.user h2 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: hsl(217, 33%, 25%);
+  margin-left: 16px;
+  white-space: nowrap;
+}
+
+.user .date {
+  font-size: 0.8rem;
+  color: hsl(212, 23%, 69%);
+  margin-left: 16px;
+  padding: 0; 
+}
+
+.share {
+  margin-left: auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: hsl(210, 46%, 95%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.share:hover {
+  background: hsl(217, 33%, 25%);
+}
+
+.share:hover img {
+  filter: brightness(0) invert(1);
+}
+
+@media (max-width: 600px) {
+  .card {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    width: 100%;
+    max-width: 375px;
+  }
+
+  .image {
+    grid-column: 1;
+    grid-row: 1;
+    height: 200px;
+  }
+
+  h1, p, .user {
+    grid-column: 1;
+  }
+
+  h1 { grid-row: 2; }
+  p { grid-row: 3; }
+  .user { grid-row: 4; }
+}
+
+.share-wrapper {
+  position: relative;
+  margin-left: auto;
+}
+
+.share.active {
+  background: hsl(217, 33%, 25%);
+}
+
+.share.active img {
+  filter: brightness(0) invert(1);
+}
+
+/* Popup kutusu */
+.share-popup {
+  position: absolute;
+  bottom: calc(100% + 16px); /* butonun üstünde, boşluklu */
+  right: -14px;
+  display: none; /* varsayılan gizli */
+  align-items: center;
+  gap: 16px;
+  background: hsl(217, 33%, 25%);
+  padding: 14px 24px;
+  border-radius: 8px;
+  white-space: nowrap;
+}
+
+/* Popup açıkken görünür */
+.share-popup.active {
+  display: flex;
+}
+
+/* Alt köşedeki ok (triangle) */
+.share-popup::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 18px;
+  border-width: 8px 8px 0 8px;
+  border-style: solid;
+  border-color: hsl(217, 33%, 25%) transparent transparent transparent;
+}
+
+.share-text {
+  color: hsl(212, 23%, 69%);
+  font-size: 0.8rem;
+  letter-spacing: 3px;
+  font-weight: 500;
+}
+
+.share-popup a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
